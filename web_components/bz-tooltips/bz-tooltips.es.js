@@ -194,9 +194,43 @@ var w = () => {
 	return e.addEventListener("pointerenter", a), e.addEventListener("pointerleave", o), e.addEventListener("pointerdown", s), () => {
 		i(), e.removeEventListener("pointerenter", a), e.removeEventListener("pointerleave", o), e.removeEventListener("pointerdown", s);
 	};
+}, K = "bz-tooltip-trigger", q = /* @__PURE__ */ new WeakMap(), J = /* @__PURE__ */ new WeakMap(), Y = /* @__PURE__ */ new WeakMap(), X = class extends HTMLElement {
+	constructor(...e) {
+		super(...e), o(this, q, null), o(this, J, null), o(this, Y, {
+			followCursor: !0,
+			hideOnPointerDown: !0,
+			delay: 0
+		});
+	}
+	get item() {
+		return l(q, this);
+	}
+	set item(e) {
+		c(q, this, e);
+	}
+	get delay() {
+		return l(Y, this).delay ?? 0;
+	}
+	set delay(e) {
+		l(Y, this).delay = Number.isFinite(e) ? Math.max(0, e) : 0;
+	}
+	get followCursor() {
+		return l(Y, this).followCursor ?? !0;
+	}
+	set followCursor(e) {
+		l(Y, this).followCursor = e;
+	}
+	connectedCallback() {
+		this.style.display || (this.style.display = "contents"), l(J, this)?.call(this), c(J, this, G(this, () => l(q, this), l(Y, this)));
+	}
+	disconnectedCallback() {
+		l(J, this)?.call(this), c(J, this, null);
+	}
+}, Z = () => {
+	customElements.get("bz-tooltip-trigger") || customElements.define(K, X);
 };
-typeof window < "u" && "customElements" in window && w();
+typeof window < "u" && "customElements" in window && (w(), Z());
 //#endregion
-export { x as BZTooltipElement, u as BZ_TOOLTIP_TAG, T as DEFAULT_ASSET_BASE_URL, G as bindTooltip, B as calculateInventoryStats, w as defineBZTooltip, A as getImageUrl, R as getItemCategory, n as getMetadataRows, F as getRarityData, L as getRarityHoverColor, j as getRarityImageUrl, I as getRarityLabelColor, P as getRarityName, M as getTooltipImageUrl, W as hideTooltip, k as parseRawItemId, z as resolveTooltipItem, N as rgbToCss, U as showTooltip };
+export { x as BZTooltipElement, X as BZTooltipTriggerElement, u as BZ_TOOLTIP_TAG, K as BZ_TOOLTIP_TRIGGER_TAG, T as DEFAULT_ASSET_BASE_URL, G as bindTooltip, B as calculateInventoryStats, w as defineBZTooltip, Z as defineBZTooltipTrigger, A as getImageUrl, R as getItemCategory, n as getMetadataRows, F as getRarityData, L as getRarityHoverColor, j as getRarityImageUrl, I as getRarityLabelColor, P as getRarityName, M as getTooltipImageUrl, W as hideTooltip, k as parseRawItemId, z as resolveTooltipItem, N as rgbToCss, U as showTooltip };
 
 //# sourceMappingURL=bz-tooltips.es.js.map

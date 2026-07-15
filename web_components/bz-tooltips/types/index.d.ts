@@ -12,4 +12,22 @@ export type BindTooltipOptions = TooltipShowOptions & {
     hideOnPointerDown?: boolean;
 };
 export declare const bindTooltip: (target: Element, getItem: (event: PointerEvent) => TooltipItem | null | undefined, options?: BindTooltipOptions) => (() => void);
+export declare const BZ_TOOLTIP_TRIGGER_TAG = "bz-tooltip-trigger";
+export declare class BZTooltipTriggerElement extends HTMLElement {
+    #private;
+    get item(): TooltipItem | null;
+    set item(value: TooltipItem | null);
+    get delay(): number;
+    set delay(value: number);
+    get followCursor(): boolean;
+    set followCursor(value: boolean);
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+}
+export declare const defineBZTooltipTrigger: () => void;
+declare global {
+    interface HTMLElementTagNameMap {
+        'bz-tooltip-trigger': BZTooltipTriggerElement;
+    }
+}
 //# sourceMappingURL=index.d.ts.map
